@@ -22,10 +22,18 @@ jobs:
     - name: Install Snyk & Authenticate
       run: |
          sudo npm install -g snyk
+         sudo npm install -g snyk-to-html
          snyk auth ${SNYK_TOKEN}
 
     # Run Snyk Infrastructure as Code
     - name: Run Snyk Infrastructure as Code
       run: |
-         snyk iac test kubernetes/ --severity-threshold=high --rules=kubernetes/bundle.tar.gz
+         snyk iac test --json | snyk-to-html -o results.html
       continue-on-error: true
+
+   # Upload Artifact   
+    - name: Upload html output
+      uses: actions/upload-artifact@v2
+      with:
+       name: results.html
+       path: ./results.html
