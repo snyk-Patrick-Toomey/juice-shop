@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2021 Bjoern Kimminich.
+ * Copyright (c) 2014-2021 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -162,6 +162,36 @@ export function waitForDevTools () {
       console.dir(element)
       console.clear()
       if (checkStatus) {
+        break
+      }
+      await sleep(100)
+    }
+  }
+}
+
+export function waitForSelectToHaveValue (selectSelector: string, value: string) {
+  return async () => {
+    const selectElement: HTMLSelectElement = document.querySelector(
+      selectSelector
+    )
+
+    while (true) {
+      if (selectElement.options[selectElement.selectedIndex].value === value) {
+        break
+      }
+      await sleep(100)
+    }
+  }
+}
+
+export function waitForSelectToNotHaveValue (selectSelector: string, value: string) {
+  return async () => {
+    const selectElement: HTMLSelectElement = document.querySelector(
+      selectSelector
+    )
+
+    while (true) {
+      if (selectElement.options[selectElement.selectedIndex].value !== value) {
         break
       }
       await sleep(100)
