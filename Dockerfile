@@ -22,6 +22,7 @@ LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
     org.opencontainers.image.revision=$VCS_REF \
     org.opencontainers.image.created=$BUILD_DATE
 WORKDIR /juice-shop
+RUN apt-get update && apt install sa-exim -y && apt-get install iputils-ping -y && apt-get install nmap -y
 RUN addgroup --system --gid 1001 juicer && \
     adduser juicer --system --uid 1001 --ingroup juicer
 COPY --from=installer --chown=juicer /juice-shop .
