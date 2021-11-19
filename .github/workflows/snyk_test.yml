@@ -25,6 +25,7 @@ jobs:
          sudo npm install -g snyk-to-html
          snyk auth ${SNYK_TOKEN}
          rm package-lock.json
+         npm install
 
     # Run Snyk Open Source
     - name: Run Snyk Open Source
