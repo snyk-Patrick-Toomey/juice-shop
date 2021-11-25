@@ -26,12 +26,12 @@ jobs:
     # Docker Build
     - name: Build Container     
       run: |
-         docker build .  -t juiceshop
+         docker build .  -t michaelbraunbass/juiceshop:main
     # Run Snyk Container     
     - name: Run Snyk Container
       run: |
          snyk container test --file=Dockerfile juiceshop  --severity-threshold=high
-         snyk container monitor juiceshop
+         snyk container monitor michaelbraunbass/juiceshop:main
       continue-on-error: true  
 
     - name: Set up QEMU

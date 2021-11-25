@@ -1,4 +1,4 @@
-FROM node:12 as installer
+FROM node:14.1.0 as installer
 COPY . /juice-shop
 WORKDIR /juice-shop
 RUN npm i -g typescript ts-node
