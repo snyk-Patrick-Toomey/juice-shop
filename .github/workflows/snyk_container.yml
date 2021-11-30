@@ -30,7 +30,7 @@ jobs:
     # Run Snyk Container     
     - name: Run Snyk Container
       run: |
-         snyk container test --file=Dockerfile juiceshop  --severity-threshold=high
+         snyk container test --file=Dockerfile michaelbraunbass/juiceshop:main  --severity-threshold=high
          snyk container monitor michaelbraunbass/juiceshop:main
       continue-on-error: true  
 
